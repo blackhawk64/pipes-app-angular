@@ -1,0 +1,80 @@
+<div class="text-layout">
+    <h1>Pipes no tan comunes</h1>
+    <p>
+        Pipes nativos de Angular. Usualmente están incluidos en el Common Module
+    </p>
+</div>
+
+<div class="grid">
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+            <p>
+                Hola, {{ nombre }}. Es un placer
+                {{ genero | i18nSelect: generoMap }}
+                al macroevento de fin de año que la empresa celebra.
+            </p>
+            <button pButton
+                    class="p-button-secondary"
+                    type="button"
+                    label="Cambiar destinatario"
+                    icon="pi pi-users"
+                    iconPos="right"
+                    (click)="cambiarDestinatario()"></button>
+        </p-fieldset>
+    </div>
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+            <p>
+                Actualmente hay
+                {{ colaboradores.length | i18nPlural: colaboradoresMap }}
+                para el evento.
+            </p>
+            <button pButton
+                    class="p-button-secondary"
+                    type="button"
+                    label="Eliminar invitado"
+                    icon="pi pi-times"
+                    iconPos="right"
+                    (click)="eliminarInvitado()"></button>
+        </p-fieldset>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="Slice Pipe" [toggleable]="true">
+            <b>Original</b>
+            <pre>{{ colaboradores }}</pre>
+            
+            <hr>
+
+            <b>slice:0:2</b>
+            <pre>{{ colaboradores | slice:0:2 }}</pre>
+        </p-fieldset>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+            <ul>
+                <li *ngFor="let attr of programador | keyvalue">
+                    {{ attr.key | titlecase }}: {{ attr.value }}
+                </li>
+            </ul>
+        </p-fieldset>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="Json Pipe" [toggleable]="true">
+            <pre>{{ programador | json }}</pre>
+        </p-fieldset>
+    </div>
+    <div class="col-12 lg:col-6">
+        <p-fieldset legend="Async Pipe" [toggleable]="true">
+            <!-- <pre>{{ miObservable | async }}</pre> -->
+            <p *ngIf="!(valorPromesa | async)">Resolviendo promesa...</p>
+            <pre>{{ valorPromesa | async }}</pre>
+        </p-fieldset>
+    </div>
+</div>
